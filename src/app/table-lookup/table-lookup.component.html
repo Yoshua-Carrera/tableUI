@@ -1,0 +1,25 @@
+<div class="container">
+  <input type="search" class="inputbox" list="options" />
+  <datalist id="options">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+  </datalist>
+  <hr />
+  <div class="content">
+    <table class="dataTable">
+        <tr *ngFor="let ticket of tableData">
+          <td>
+            {{ ticket.ticket }}
+          </td>
+          <td>
+            {{ ticket.label }}
+          </td>
+          <td>
+            {{ ticket.status }}
+          </td>
+        </tr>
+      </table>
+  </div>
+</div>
