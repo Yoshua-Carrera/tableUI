@@ -1,11 +1,9 @@
 <div class="container">
-  <input type="search" class="inputbox" list="options" />
-  <datalist id="options">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
+  <input type="search" class="inputbox" list="options" #inputBox/>
+  <datalist  id="options">
+    <option value={{datapoint}} *ngFor="let datapoint of dataList">{{ datapoint }}</option>
   </datalist>
+  <hr />
   <hr />
   <div class="content">
     <table class="dataTable">
