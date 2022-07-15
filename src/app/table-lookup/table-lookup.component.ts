@@ -16,31 +16,13 @@ export class TableLookupComponent implements OnInit {
 
   ngOnInit(): void {
     this.tableData = [...this.data.data];
-    // this.dataList = this.tableData.map(data => data.label) 
-    this.dataList = ['label1,label2', 'label2', 'label3', 'label4'] 
+    this.dataList = this.tableData.map(data => data.label) 
     console.log(this.inputBox);
     fromEvent(this.inputBox.nativeElement, 'input')
       .pipe(
         tap((_) => {
           const input = this.inputBox.nativeElement.value;
-          if (!input) {
-            this.tableData = [...this.data.data];
-          } else {
-            const matches = [...this.data.data].filter(
-              (data) => data.label === input
-            );
-            if (matches.length) {
-              this.tableData = [...matches];
-            } else {
-              this.tableData = [
-                {
-                  ticket: 'None found',
-                  label: 'None found',
-                  status: 'None found',
-                },
-              ];
-            }
-          }
+          this.tableData = [...this.data.tableFilter(input)]
         })
       )
       .subscribe();

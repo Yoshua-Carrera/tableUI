@@ -12,10 +12,27 @@ export class DataService {
     { ticket: 'Ticket3', label: 'label3', status: 'pending' },
     { ticket: 'Ticket4', label: 'label4', status: 'pending' },
   ];
-  dataListSBJ$: Subject<any> = new Subject()
-  dataListOBS$: Observable<any> = this.dataListSBJ$.asObservable()
+  dataListSBJ$: Subject<any> = new Subject();
+  dataListOBS$: Observable<any> = this.dataListSBJ$.asObservable();
 
   constructor() {}
 
-  
+  tableFilter(input: string): Tickets[] {
+    if (!input) {
+      return [...this.data];
+    } else {
+      const matches = [...this.data].filter((data) => data.label === input);
+      if (matches.length) {
+        return [...matches];
+      } else {
+        return [
+          {
+            ticket: 'None found',
+            label: 'None found',
+            status: 'None found',
+          },
+        ];
+      }
+    }
+  }
 }
